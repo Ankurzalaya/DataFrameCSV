@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+  <style>
+    table {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04aa6d;
+      color: white;
+    }
+
+    .button {
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .button1 {
+      background-color: #4caf50;
+    }
+
+    table {
+      width: 50%;
+    }
+
+    .child {
+      display: inline-block;
+    }
+
+    #son {
+      margin: left 500pz;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="parent">
+    <div class="child">
+      <a href="{{ url_for('Filter_data') }}">
+        <button type="button" class="btn btn-outline-primary">Filter</button>
+      </a>
+    </div>
+    <div class="child" id="son">
+      <form action="{{ url_for('Search_data') }}" method="post">
+        <input type="text" name="filterdata" />
+        <input type="submit" />
+      </form>
+    </div>
+  </div>
+  <div align="center">
+    <table class="tablecolor" id="example">
+      <h1>
+        <!--Displaying the converted table-->
+        {% for table in tables %}
+        <h2>{{titles[loop.index]}}</h2>
+        {{ table|safe }} {% endfor %}
+      </h1>
+    </table>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#example").DataTable({
+        paging: false,
+        scrollY: 400,
+      });
+    });
+  </script>
+</body>
+
+</html>

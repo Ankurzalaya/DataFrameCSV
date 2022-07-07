@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Data</title>
+    
+</head>
+
+<body>
+    <h3>Filter By Columns</h3>
+    <div>
+        <form action="{{ url_for('Filter_data') }}" method="post">
+            <input type="text" name="data">
+            <input type="submit">
+        </form>
+        <table>
+            <h1>
+                <!--Displaying the converted table-->
+                {% for table in tables %}
+                {{ table|safe }}
+                {% endfor %}
+            </h1>
+        </table>
+    </div>
+</body>
+
+</html>
